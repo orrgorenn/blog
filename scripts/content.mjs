@@ -2,6 +2,8 @@ import { getFilename } from './getFilename.mjs'
 import { getToday } from './getToday.mjs'
 import { existsSync, writeFileSync } from 'fs'
 import { frontmatter } from './frontmatter.mjs'
+import { gitNewBranch } from './gitNewBranch.mjs'
+import { openInVSCode } from './openInVSCode.mjs'
 
 const newContent = async () => {
   const { fileName, type, contentFolder } = getFilename()
