@@ -39,7 +39,7 @@ const posts = (await Astro.glob('./posts/*.md')).sort(
 							<li class="text-center mb-4">
 								<a href={post.url}>
 									<img class="border border-slate-300 dark:border-zinc-700 rounded-xl" 
-									src={post.frontmatter.heroImage} width={720*2} alt={`thumbnail`} />
+									src={post.frontmatter.heroImage} width={720*2} height={100} alt={`thumbnail`} />
 									<div class="mt-3 text-xl">{post.frontmatter.title}</div>
 									<div class="opacity-70">{post.frontmatter.description}</div>
 								</a>
