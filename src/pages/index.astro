@@ -1,0 +1,54 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config'
+import Body from '../components/Body.astro';
+import Content from '../components/Content.astro';
+import { IoArrowForward } from 'react-icons/io5';
+import { HOMEPAGE_URL } from '../config';
+import Masthead from '../components/Masthead.astro';
+
+const posts = (await Astro.glob('./posts/*.md')).sort(
+	(a: any, b: any) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+)
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<Body>
+		<Header title={SITE_TITLE} />
+		<main class="pt-[60px]">
+			<Masthead />
+			<Content>
+				<section>
+					<p class="mb-8 indent-4">
+						As a child born to two parents, one of whom is an immigrant, who took on nearly $150k in debt for their own reasons 
+						(part of which is on my name and which I am still paying off), 
+						I said: "I won't let myself and I won't let my kids grow up in the same way.".
+						So here is a blog documenting each and every step on my way to what's called - financial freedom.
+						<a class="inline-flex items-center gap-1 indent-1 text-orange-500" href={HOMEPAGE_URL}>Learn more about me <IoArrowForward className="inline" /></a>
+					</p>
+				</section>
+				<section>
+					<ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+						{posts.map((post) => (
+							<li class="text-center mb-4">
+								<a href={post.url}>
+									<img class="border border-slate-300 dark:border-zinc-700 rounded-xl" 
+									src={post.frontmatter.heroImage} width={720*2} alt={`thumbnail`} />
+									<div class="mt-3 text-xl">{post.frontmatter.title}</div>
+									<div class="opacity-70">{post.frontmatter.description}</div>
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
+			</Content>
+		</main>
+		<Footer />
+	</Body>
+</html>

@@ -1,0 +1,27 @@
+---
+import HeaderLink from './HeaderLink.astro'
+import { HOMEPAGE_URL } from '../config'
+import { FcHome } from 'react-icons/fc';
+import { FaCommentsDollar } from 'react-icons/fa';
+import ThemeToggle from './ThemeToggleButton';
+import DropdownMenu from './DropdownMenu';
+---
+
+<header class="fixed w-full p-2 z-20 backdrop-blur-md">
+  <div class="mx-auto max-w-3xl">
+    <nav class="flex items-center gap-3 text-base">
+			<a href="/" class="group">
+				<h2 class="font-semibold tracking-tighter p-2 font-montserrat text-lg">
+					<FaCommentsDollar className="w-5 inline-block transition-transform group-hover:skew-y-12" /> TechTraFin
+				</h2>
+			</a>
+			<div class="items-center gap-6 hidden md:flex">
+				<HeaderLink href={HOMEPAGE_URL}><FcHome /> Home</HeaderLink>
+				<HeaderLink href="/about">About</HeaderLink>
+			</div>
+			<div class="flex-1"></div>
+			<ThemeToggle client:load />
+			<DropdownMenu client:visible />
+    </nav>
+  </div>
+</header>
