@@ -22,7 +22,7 @@ const newContent = async () => {
 
   writeFileSync(folderAndFilename, frontmatter[type])
 
-  await gitNewBranch(type, fileName)
+  // await gitNewBranch(type, fileName)
 
   openInVSCode(folderAndFilename)
 }
